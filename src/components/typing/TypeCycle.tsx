@@ -1,47 +1,61 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import * as React from "react";
 
 type Props = {
   phrases: string[];
-  typingSpeed?: number;   // ms per char while typing
-  deletingSpeed?: number; // ms per char while deleting
-  pause?: number;         // ms to hold at full word
+  typingSpeed?: number;    // ms per char while typing
+  deletingSpeed?: number;  // ms per char while deleting
+  pauseAfterWord?: number; // ms pause after finishing a word
   className?: string;
 };
 
-export default function TypeCycle({
+/**
+ * Dependency-free typing loop: type → pause → delete → next.
+ * Keeps looping forever so it never “disappears”.
+ */
+export function TypeCycle({
   phrases,
-  typingSpeed = 65,
-  deletingSpeed = 40,
-  pause = 1200,
-  className,
+  typingSpeed = 36,
+  deletingSpeed = 28,
+  pauseAfterWord = 900,
+  className = "",
 }: Props) {
-  const [i, setI] = useState(0);
-  const [text, setText] = useState("");
-  const [deleting, setDeleting] = useState(false);
+  const [phraseIndex, setPhraseIndex] = React.useState(0);
+  const [chars, setChars] = React.useState(0);
+  const [deleting, setDeleting] = React.useState(false);
 
-  useEffect(() => {
-    const current = phrases[i % phrases.length];
-    let t: ReturnType<typeof setTimeout> | undefined;
+  const word = phrases[phraseIndex] ?? "";
+  const visible = word.slice(0, chars);
 
-    if (!deleting && text.length < current.length) {
-      t = setTimeout(() => setText(current.slice(0, text.length + 1)), typingSpeed);
-    } else if (!deleting && text.length === current.length) {
-      t = setTimeout(() => setDeleting(true), pause);
-    } else if (deleting && text.length > 0) {
-      t = setTimeout(() => setText(current.slice(0, text.length - 1)), deletingSpeed);
-    } else if (deleting && text.length === 0) {
-      setDeleting(false);
-      setI((n) => n + 1);
+  React.useEffect(() => {
+    let t: number;
+
+    if (!deleting && chars === word.length) {
+      // finished typing → pause → start deleting
+      t = window.setTimeout(() => setDeleting(true), pauseAfterWord);
+    } else if (deleting && chars === 0) {
+      // finished deleting → next phrase
+      t = window.setTimeout(() => {
+        setDeleting(false);
+        setPhraseIndex((i) => (i + 1) % phrases.length);
+      }, 140);
+    } else {
+      // keep stepping
+      const speed = deleting ? deletingSpeed : typingSpeed;
+      t = window.setTimeout(
+        () => setChars((c) => c + (deleting ? -1 : 1)),
+        speed
+      );
     }
 
-    return () => t && clearTimeout(t);
-  }, [deleting, text, i, phrases, typingSpeed, deletingSpeed, pause]);
+    return () => window.clearTimeout(t);
+  }, [chars, deleting, word, phrases.length, typingSpeed, deletingSpeed, pauseAfterWord]);
 
   return (
     <span className={className}>
-      {text}
-      <span className="type-caret">|</span>
+      {visible}
+      <span aria-hidden className="type-caret">|</span>
     </span>
   );
 }

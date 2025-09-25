@@ -1,6 +1,9 @@
+// src/app/page.tsx
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
+import { ProductShot } from "@/components/site/ProductShot";
 import { HowItWorks } from "@/components/site/HowItWorks";
+import { GlassesPanel } from "@/components/site/GlassesPanel";
 import { FeatureBlocks } from "@/components/site/FeatureBlocks";
 import { Testimonial } from "@/components/site/Testimonial";
 import { FAQ } from "@/components/site/FAQ";
@@ -16,9 +19,13 @@ export default function HomePage() {
         <Hero />
       </section>
 
-      <section className="py-24">
+      <ProductShot />
+
+      <section className="py-24" id="how-it-works">
         <HowItWorks />
       </section>
+
+      <GlassesPanel />
 
       <section className="py-24">
         <FeatureBlocks />
@@ -32,7 +39,7 @@ export default function HomePage() {
         <FAQ />
       </section>
 
-      <section className="py-28">
+      <section className="py-28" id="get-started">
         <BottomCTA />
       </section>
 

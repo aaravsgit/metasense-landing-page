@@ -1,73 +1,75 @@
+// src/components/site/HowItWorks.tsx
 "use client";
-import TypeCycle from "@/components/typing/TypeCycle";
-import { Reveal } from "@/components/anim/Reveal";
-
-const steps = [
-  {
-    title: "Pair your glasses & create a profile",
-    desc: "Connect Ray-Ban Meta glasses and add trusted faces (family, friends, caregivers). Everything stays private and editable.",
-  },
-  {
-    title: "On-demand recognition & gentle prompts",
-    desc: "Say “MetaSense, who is this?” (or tap). We detect faces on-device and show names, context, and reminders—never intrusive.",
-  },
-  {
-    title: "Practice & insights",
-    desc: "Turn encounters into memory practice. Quick quizzes, streaks, and optional speech trend checks to watch for early signs.",
-  },
-];
 
 export function HowItWorks() {
   return (
-    <div id="how" className="section">
-      <Reveal delay={0.05}>
-        <div className="mb-8 flex justify-center">
-          <span className="badge">How it works</span>
-        </div>
-      </Reveal>
+    <section id="how-it-works" className="section py-24">
+      {/* Heading + subhead */}
+      <div className="text-center">
+        <div className="badge w-fit mx-auto">How it works</div>
 
-      {/* Typing cycle in the section heading */}
-      <Reveal delay={0.12}>
-        <h2 className="heading-section text-center">
-          Getting started is{" "}
-          <span className="font-display">
-            <TypeCycle
-              phrases={[
-                "private.",
-                "hands-free.",
-                "on-demand.",
-                "gentle.",
-                "built for real life.",
-              ]}
-              className="font-display"
-            />
-          </span>
+        <h2 className="heading-section mt-6">
+          Getting started is <span className="font-accent">hands-free</span>.
         </h2>
-      </Reveal>
 
-      <Reveal delay={0.2}>
-        <p className="mx-auto mt-3 max-w-[640px] text-center text-white/65">
-          A streamlined, privacy-first flow designed for real life—at home or on the go.
+        {/* ⬇️ This subhead now has consistent spacing below it */}
+        <p className="mx-auto mt-4 max-w-3xl text-white/80">
+          Pair the glasses once, then let MetaSense do the gentle memory work in
+          the background.
         </p>
-      </Reveal>
-
-      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {steps.map((s, i) => (
-          <Reveal key={s.title} delay={0.15 + i * 0.08}>
-            <div className="glass relative p-7">
-              <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/10 text-xs">
-                  {i + 1}
-                </div>
-              </div>
-              <div className="mt-3 text-[17px] font-semibold">{s.title}</div>
-              <p className="mt-2 text-sm leading-6 text-white/70">{s.desc}</p>
-              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-white/5" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-[28px] bg-gradient-to-t from-violet-600/20 to-transparent" />
-            </div>
-          </Reveal>
-        ))}
       </div>
-    </div>
+
+      {/* ⬇️ Increased gap from the subhead to the cards */}
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {/* Card 1 */}
+        <div className="relative rounded-[28px] glass p-6 md:p-8">
+          {/* number badge */}
+          <div className="absolute -top-4 left-6">
+            <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/90 font-medium">
+              1
+              <span className="absolute inset-0 -z-10 rounded-full bg-purple-600/25 blur-md" />
+            </span>
+          </div>
+
+          <h3 className="pt-4 text-2xl font-semibold">Pair your glasses</h3>
+          <p className="mt-3 text-white/80">
+            Connect Ray-Ban Meta in the app. Choose what to remember and keep
+            everything local by default.
+          </p>
+        </div>
+
+        {/* Card 2 */}
+        <div className="relative rounded-[28px] glass p-6 md:p-8">
+          <div className="absolute -top-4 left-6">
+            <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/90 font-medium">
+              2
+              <span className="absolute inset-0 -z-10 rounded-full bg-purple-600/25 blur-md" />
+            </span>
+          </div>
+
+          <h3 className="pt-4 text-2xl font-semibold">Wear &amp; capture</h3>
+          <p className="mt-3 text-white/80">
+            Say a voice phrase or tap in the app to remember a face, moment, or
+            place. We turn it into a cue.
+          </p>
+        </div>
+
+        {/* Card 3 */}
+        <div className="relative rounded-[28px] glass p-6 md:p-8">
+          <div className="absolute -top-4 left-6">
+            <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/90 font-medium">
+              3
+              <span className="absolute inset-0 -z-10 rounded-full bg-purple-600/25 blur-md" />
+            </span>
+          </div>
+
+          <h3 className="pt-4 text-2xl font-semibold">Get gentle cues</h3>
+          <p className="mt-3 text-white/80">
+            MetaSense surfaces helpful context when you need it—plus optional
+            speech check-ins for early trends.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
