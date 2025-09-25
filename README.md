@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# MetaSense — Landing Page
 
-## Getting Started
+A minimalist Next.js landing site for **MetaSense** (Ray-Ban Meta glasses + memory cues).  
+Includes smooth scroll-reveal animations and a rotating typing headline.
 
-First, run the development server:
+## Tech
+- Next.js 15
+- Tailwind CSS v4
+- TypeScript
+- Small animation utils (Reveal + TypeCycle)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Quick Start
+1. Install deps: 
+pm install
+2. Dev server: 
+pm run dev → http://localhost:3000
+3. Edit content in src/components/site/*
+4. Demo images live in public/demos/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Notable Files
+- src/components/anim/Reveal.tsx — scroll reveal wrapper
+- src/components/typing/TypeCycle.tsx — cycling typing effect
+- src/app/globals.css — Tailwind v4 import, custom scales & styles
+- src/app/page.tsx — page sections composition
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
+Any Next-compatible host (Vercel, Netlify, etc.).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- Privacy-first copy and placeholders; replace with real screenshots in /public/demos/.
+- This is a hackathon prototype, **not medical advice**.
