@@ -1,61 +1,75 @@
+// src/components/typing/TypeCycle.tsx
 "use client";
 
-import * as React from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-type Props = {
-  phrases: string[];
-  typingSpeed?: number;    // ms per char while typing
-  deletingSpeed?: number;  // ms per char while deleting
-  pauseAfterWord?: number; // ms pause after finishing a word
-  className?: string;
-};
+type Phrase = string | { text: string; accent?: boolean };
 
-/**
- * Dependency-free typing loop: type → pause → delete → next.
- * Keeps looping forever so it never “disappears”.
- */
+function getText(p: Phrase) {
+  return typeof p === "string" ? p : p.text;
+}
+function getAccent(p: Phrase) {
+  return typeof p === "object" && !!p.accent;
+}
+
 export function TypeCycle({
   phrases,
-  typingSpeed = 36,
-  deletingSpeed = 28,
-  pauseAfterWord = 900,
-  className = "",
-}: Props) {
-  const [phraseIndex, setPhraseIndex] = React.useState(0);
-  const [chars, setChars] = React.useState(0);
-  const [deleting, setDeleting] = React.useState(false);
+  typeMs = 36,   // per-character type speed
+  holdMs = 1050,  // pause after finishing a phrase
+  eraseMs = 18,   // per-character erase speed
+}: {
+  phrases: Phrase[];
+  typeMs?: number;
+  holdMs?: number;
+  eraseMs?: number;
+}) {
+  // Keep a stable reference to the array
+  const items = useMemo(() => phrases, [phrases]);
 
-  const word = phrases[phraseIndex] ?? "";
-  const visible = word.slice(0, chars);
+  const [idx, setIdx] = useState(0);
+  const [typed, setTyped] = useState("");
+  const [phase, setPhase] = useState<"typing" | "holding" | "erasing">("typing");
 
-  React.useEffect(() => {
-    let t: number;
+  const timerRef = useRef<number | null>(null);
+  const clearTimer = () => {
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    timerRef.current = null;
+  };
 
-    if (!deleting && chars === word.length) {
-      // finished typing → pause → start deleting
-      t = window.setTimeout(() => setDeleting(true), pauseAfterWord);
-    } else if (deleting && chars === 0) {
-      // finished deleting → next phrase
-      t = window.setTimeout(() => {
-        setDeleting(false);
-        setPhraseIndex((i) => (i + 1) % phrases.length);
-      }, 140);
-    } else {
-      // keep stepping
-      const speed = deleting ? deletingSpeed : typingSpeed;
-      t = window.setTimeout(
-        () => setChars((c) => c + (deleting ? -1 : 1)),
-        speed
-      );
+  useEffect(() => {
+    const full = getText(items[idx]);
+
+    if (phase === "typing") {
+      if (typed.length < full.length) {
+        timerRef.current = window.setTimeout(() => {
+          setTyped(full.slice(0, typed.length + 1));
+        }, typeMs) as unknown as number;
+      } else {
+        timerRef.current = window.setTimeout(() => setPhase("holding"), holdMs) as unknown as number;
+      }
+    } else if (phase === "holding") {
+      timerRef.current = window.setTimeout(() => setPhase("erasing"), holdMs) as unknown as number;
+    } else if (phase === "erasing") {
+      if (typed.length > 0) {
+        timerRef.current = window.setTimeout(() => {
+          setTyped(full.slice(0, typed.length - 1));
+        }, eraseMs) as unknown as number;
+      } else {
+        setIdx((i) => (i + 1) % items.length);
+        setPhase("typing");
+      }
     }
 
-    return () => window.clearTimeout(t);
-  }, [chars, deleting, word, phrases.length, typingSpeed, deletingSpeed, pauseAfterWord]);
+    return clearTimer;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typed, phase, idx, items, typeMs, holdMs, eraseMs]);
+
+  const accent = getAccent(items[idx]);
 
   return (
-    <span className={className}>
-      {visible}
-      <span aria-hidden className="type-caret">|</span>
+    <span>
+      <span className={accent ? "font-accent" : undefined}>{typed}</span>
+      <span className="type-caret">|</span>
     </span>
   );
 }
