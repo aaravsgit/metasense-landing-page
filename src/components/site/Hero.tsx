@@ -12,11 +12,15 @@ export function Hero() {
           <div className="badge">Built for Ray-Ban Meta smart glasses</div>
 
           <h1 className="heading-hero">
-            Gentle <span className="font-accent">memory</span> cues.
+            Memoray
           </h1>
 
           <p className="text-lg text-white/80">
-            Face recognition and reminders—private by default. Optional speech check-ins to watch trends early.
+            Your memories, supported.
+          </p>
+
+          <p className="text-base text-white/70 max-w-2xl">
+            Memoray turns everyday moments into calm, confident living—face recognition, gentle reminders, and safe zones that feel invisible until you need them.
           </p>
 
           <div className="flex items-center gap-4 mt-1">
@@ -29,7 +33,7 @@ export function Hero() {
             </Link>
           </div>
 
-          <div className="text-sm text-white/50 mt-2">Your data, your control.</div>
+          <div className="text-sm text-white/50 mt-2">Calm, private, and caregiver-ready—creating memorays.</div>
         </div>
       </Reveal>
     </section>

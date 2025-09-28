@@ -4,10 +4,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqs = [
   {
     q: "Where is my data stored?",
-    a: "Profiles and recognition history live in your MetaSense account. You can delete faces, entries, or your entire history at any time.",
+    a: "Profiles and recognition history live in your Memoray account. You can delete faces, entries, or your entire history at any time.",
   },
   {
-    q: "Does MetaSense work offline?",
+    q: "Does Memoray work offline?",
     a: "Face detection runs on-device; recognition may use a secure local model cache. Some features (backup, sharing) sync when online.",
   },
   {

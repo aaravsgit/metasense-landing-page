@@ -1,6 +1,6 @@
-﻿# MetaSense — Landing Page
+﻿# Memoray — Landing Page
 
-A minimalist Next.js landing site for **MetaSense** (Ray-Ban Meta glasses + memory cues).  
+A minimalist Next.js landing site for **Memoray** (Ray-Ban Meta glasses + memory cues).  
 Includes smooth scroll-reveal animations and a rotating typing headline.
 
 ## Tech

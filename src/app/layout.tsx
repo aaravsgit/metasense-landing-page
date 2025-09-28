@@ -18,9 +18,15 @@ const bodoni = Bodoni_Moda({
 });
 
 export const metadata: Metadata = {
-  title: "MetaSense — Memory assistance for everyday life",
+  title: "Memoray — creating memorays",
   description:
-    "MetaSense uses Ray-Ban Meta glasses to recognize familiar faces, give gentle prompts, and help practice memory — with optional speech screening for early indicators.",
+    "Memoray helps people and caregivers with face recognition, safe zones, and daily reminders—creating memorays with confidence and care.",
+  openGraph: {
+    title: "Memoray",
+    description: "Memory support, made personal. With Ray-Ban Meta glasses integration.",
+    type: "website",
+  },
+  keywords: "memory care, reminders, safe zones, face recognition, Ray-Ban Meta, caregiving, Alzheimer's support",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -15,7 +15,7 @@ export function ProductShot() {
           <div className="relative aspect-[16/8] md:aspect-[16/7]">
             <Image
               src={DASHBOARD_SRC}
-              alt="MetaSense prototype dashboard"
+              alt="Memoray prototype dashboard"
               fill
               priority
               sizes="(min-width: 1024px) 960px, 92vw"

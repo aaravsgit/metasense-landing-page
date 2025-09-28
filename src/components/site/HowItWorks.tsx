@@ -7,21 +7,21 @@ import { TypeCycle } from "@/components/typing/TypeCycle";
 const steps = [
   {
     n: "1",
-    title: "Pair your glasses",
+    title: "Sign in and set your circle",
     body:
-      "Connect Ray-Ban Meta in a tap. MetaSense runs alongside the official app—no jailbreaks or hacks.",
+      "Add people you trust and the places that matter.",
   },
   {
     n: "2",
-    title: "Teach familiar faces",
+    title: "Wear or carry your companion",
     body:
-      "Add trusted profiles (family, friends, caregivers). MetaSense stores embeddings locally first and syncs securely.",
+      "Use the app—or pair with Ray-Ban Meta—for context when you need it.",
   },
   {
     n: "3",
-    title: "Use gentle cues",
+    title: "Live your day, creating memorays",
     body:
-      "Get subtle haptics or spoken hints like names, relationships, and context—tuned to reduce cognitive load.",
+      "Subtle cues and reminders fade into the background until they're helpful.",
   },
 ];
 
@@ -34,10 +34,12 @@ export function HowItWorks() {
           <TypeCycle
             // Starts at first phrase ("simple.") and all variants are italicized
             phrases={[
-              { text: "simple.", accent: true },
-              { text: "hands-free.", accent: true },
-              { text: "private.", accent: true },
-              { text: "ready.", accent: true },
+              { text: "remember faces", accent: true },
+              { text: "find your people", accent: true },
+              { text: "never miss meds", accent: true },
+              { text: "stay in safe zones", accent: true },
+              { text: "share updates with caregivers", accent: true },
+              { text: "creating memorays", accent: true },
             ]}
             typeMs={34}
             holdMs={900}

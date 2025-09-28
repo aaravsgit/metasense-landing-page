@@ -36,40 +36,28 @@ const item: Variants = {
 export function FeatureBlocks() {
   const features = [
     {
-      title: "Familiar faces, gently recognized",
+      title: "Know who's with you",
       description:
-        "Private on-device face recognition helps anchor daily interactions. See a subtle prompt with a name and last memory note.",
+        "Memoray helps you recognize familiar faces and relationships, right when it matters—subtle, private, and on your terms.",
       Icon: ScanFace,
     },
     {
-      title: "Helpful prompts—not interruptions",
+      title: "Move with confidence",
       description:
-        "Lightweight cues for names, tasks, and places. You’re always in control of when and how prompts appear.",
-      Icon: Sparkles,
-    },
-    {
-      title: "Optional speech check-ins",
-      description:
-        "With consent, periodic speech samples can screen for early changes associated with Alzheimer’s risk.",
-      Icon: Mic,
-    },
-    {
-      title: "Practice that feels natural",
-      description:
-        "Short, friendly quizzes drawn from your own people and places help reinforce recall over time.",
-      Icon: Brain,
-    },
-    {
-      title: "Safety & context awareness",
-      description:
-        "Gentle alerts for wandering patterns or missed routines, plus quick access to a trusted contact.",
+        "Create gentle boundaries and get peace-of-mind updates, so independence stays safe for you and your circle.",
       Icon: ShieldCheck,
     },
     {
-      title: "Your data, your control",
+      title: "Remember what matters",
       description:
-        "Private by default with local-first storage. Sync and sharing are opt-in and transparent.",
-      Icon: Database,
+        "From medication to appointments, reminders arrive when they're useful—not noisy. Fewer taps, more clarity.",
+      Icon: Sparkles,
+    },
+    {
+      title: "Care, together",
+      description:
+        "Share the right info with the right people. Notes, updates, and reminders that keep caregivers aligned.",
+      Icon: Brain,
     },
   ];
 
@@ -81,18 +69,18 @@ export function FeatureBlocks() {
 
       <div className="section relative z-10">
         <div className="text-center mb-10">
-          <div className="badge mx-auto">Why MetaSense</div>
+          <div className="badge mx-auto">Why Memoray</div>
           <h2 className="heading-section mt-5">
             Designed for real life—private by default.
           </h2>
           <p className="mt-4 text-zinc-300/80 max-w-2xl mx-auto">
-            MetaSense pairs Ray-Ban Meta glasses with gentle software to support
+            Memoray pairs Ray-Ban Meta glasses with gentle software to support
             day-to-day memory, without getting in the way.
           </p>
         </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           variants={container}
           initial="hidden"
           whileInView="show"
